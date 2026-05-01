@@ -1,0 +1,227 @@
+/* ===================================================================
+   ANIMATIONS — reveal-on-scroll, staggered hero, micro-interactions
+=================================================================== */
+
+
+/* -------------------------------------------------------------------
+   REVEAL-ON-SCROLL primitive
+   The .reveal class hides the element; .reveal.in-view shows it.
+   js/animations.js applies the in-view class via IntersectionObserver.
+------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variants */
+.reveal-left  { transform: translateX(-28px); }
+.reveal-left.in-view  { transform: translateX(0); }
+.reveal-right { transform: translateX(28px); }
+.reveal-right.in-view { transform: translateX(0); }
+.reveal-scale { transform: scale(0.95); }
+.reveal-scale.in-view { transform: scale(1); }
+
+
+/* -------------------------------------------------------------------
+   HERO — staggered cascade on first paint
+------------------------------------------------------------------- */
+
+.hero .reveal:nth-child(1) { transition-delay: 0.1s; }
+.hero .reveal:nth-child(2) { transition-delay: 0.2s; }
+.hero .reveal:nth-child(3) { transition-delay: 0.3s; }
+.hero .reveal:nth-child(4) { transition-delay: 0.4s; }
+.hero .reveal:nth-child(5) { transition-delay: 0.55s; }
+.hero .reveal:nth-child(6) { transition-delay: 0.7s; }
+.hero-photo-wrap.reveal    { transition-delay: 0.45s; }
+.hero-stats.reveal         { transition-delay: 0.85s; }
+
+
+/* -------------------------------------------------------------------
+   STAGGERED CHILDREN — used inside grids/timelines
+   When parent gets .in-view, children animate in sequence.
+------------------------------------------------------------------- */
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+.stagger.in-view > *               { opacity: 1; transform: translateY(0); }
+.stagger.in-view > *:nth-child(1)  { transition-delay: 0.05s; }
+.stagger.in-view > *:nth-child(2)  { transition-delay: 0.10s; }
+.stagger.in-view > *:nth-child(3)  { transition-delay: 0.15s; }
+.stagger.in-view > *:nth-child(4)  { transition-delay: 0.20s; }
+.stagger.in-view > *:nth-child(5)  { transition-delay: 0.25s; }
+.stagger.in-view > *:nth-child(6)  { transition-delay: 0.30s; }
+.stagger.in-view > *:nth-child(7)  { transition-delay: 0.35s; }
+.stagger.in-view > *:nth-child(8)  { transition-delay: 0.40s; }
+.stagger.in-view > *:nth-child(9)  { transition-delay: 0.45s; }
+.stagger.in-view > *:nth-child(10) { transition-delay: 0.50s; }
+.stagger.in-view > *:nth-child(11) { transition-delay: 0.55s; }
+.stagger.in-view > *:nth-child(12) { transition-delay: 0.60s; }
+
+
+/* -------------------------------------------------------------------
+   SECTION HEAD reveal — number, title, rule animate in sequence
+------------------------------------------------------------------- */
+
+.section-head .section-num,
+.section-head .section-title,
+.section-head .section-rule,
+.section-head .section-link {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+.section-head.in-view .section-num   { opacity: 1; transform: translateY(0); transition-delay: 0.05s; }
+.section-head.in-view .section-title { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+.section-head.in-view .section-rule  {
+  opacity: 1; transform: translateY(0);
+  transition-delay: 0.30s;
+  transition-duration: 1.1s;
+}
+.section-head.in-view .section-link  { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+
+
+/* -------------------------------------------------------------------
+   COUNT-UP animation for hero stat values
+   js/animations.js handles the counting; CSS just provides a quick fade.
+------------------------------------------------------------------- */
+
+.hero-stat-value {
+  display: inline-block;
+  transition: transform 0.4s var(--ease-out);
+}
+.hero-stat:hover .hero-stat-value { transform: scale(1.08); }
+
+
+/* -------------------------------------------------------------------
+   TYPED-LIKE CARET (purely decorative on hero name)
+------------------------------------------------------------------- */
+
+.hero-name::after {
+  content: '|';
+  margin-left: 6px;
+  color: var(--accent);
+  font-weight: 300;
+  animation: caret-blink 1.1s steps(2, end) infinite;
+}
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+
+/* -------------------------------------------------------------------
+   PROJECT CARD — title underline sweep on hover
+------------------------------------------------------------------- */
+
+.project-title {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s var(--ease-out);
+  display: inline;
+}
+.project:hover .project-title { background-size: 100% 1.5px; }
+
+
+/* -------------------------------------------------------------------
+   SKILL BAR FILL — animated when section enters view
+   js sets data-fill which is read here.
+------------------------------------------------------------------- */
+
+.skill-fill[data-fill]              { width: 0; }
+.in-view .skill-fill[data-fill="55"]{ width: 55%; }
+.in-view .skill-fill[data-fill="60"]{ width: 60%; }
+.in-view .skill-fill[data-fill="65"]{ width: 65%; }
+.in-view .skill-fill[data-fill="70"]{ width: 70%; }
+.in-view .skill-fill[data-fill="75"]{ width: 75%; }
+.in-view .skill-fill[data-fill="78"]{ width: 78%; }
+.in-view .skill-fill[data-fill="80"]{ width: 80%; }
+.in-view .skill-fill[data-fill="82"]{ width: 82%; }
+.in-view .skill-fill[data-fill="85"]{ width: 85%; }
+.in-view .skill-fill[data-fill="88"]{ width: 88%; }
+.in-view .skill-fill[data-fill="90"]{ width: 90%; }
+.in-view .skill-fill[data-fill="92"]{ width: 92%; }
+.in-view .skill-fill[data-fill="95"]{ width: 95%; }
+/* Fallback for any other value (set inline by js) is handled via inline style. */
+
+
+/* -------------------------------------------------------------------
+   TIMELINE DOT pulse — only on the most-recent item (first one)
+------------------------------------------------------------------- */
+
+.timeline .tl-item:first-child::before {
+  animation: tl-dot-pulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes tl-dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--accent-glow); }
+  50%      { box-shadow: 0 0 0 8px var(--accent-glow); }
+}
+
+
+/* -------------------------------------------------------------------
+   CHIP fade-in after parent .in-view
+------------------------------------------------------------------- */
+
+.chip {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: chip-in 0.5s var(--ease-out) forwards;
+}
+.in-view .chip,
+.project:hover .chip { animation-play-state: running; }
+.chip:nth-child(1) { animation-delay: 0.05s; }
+.chip:nth-child(2) { animation-delay: 0.10s; }
+.chip:nth-child(3) { animation-delay: 0.15s; }
+.chip:nth-child(4) { animation-delay: 0.20s; }
+.chip:nth-child(5) { animation-delay: 0.25s; }
+.chip:nth-child(6) { animation-delay: 0.30s; }
+
+@keyframes chip-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* -------------------------------------------------------------------
+   THEME-CHANGE flash — gives a smooth 'feel' on toggle
+------------------------------------------------------------------- */
+
+body.theme-flipping { transition: background-color 0.7s ease, color 0.7s ease; }
+body.theme-flipping * { transition: background-color 0.7s ease, color 0.7s ease, border-color 0.7s ease !important; }
+
+
+/* -------------------------------------------------------------------
+   REDUCED MOTION — respect user preference
+------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .stagger > * { opacity: 1 !important; transform: none !important; }
+  .bg-blob { animation: none !important; }
+  .hero-photo-orbit { animation: none !important; }
+  .hero-name::after { animation: none; opacity: 0; }
+}

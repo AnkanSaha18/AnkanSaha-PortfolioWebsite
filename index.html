@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ankan Saha — Lecturer at BUBT, M.Sc. Researcher at BUET. Computer Science & Engineering. Deep learning, medical image segmentation, and blockchain systems." />
+  <meta name="author" content="Ankan Saha" />
+  <meta name="theme-color" content="#0a0e1a" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ankan Saha — Portfolio" />
+  <meta property="og:description" content="Lecturer · Researcher · Engineer. Deep learning, medical image segmentation, and blockchain systems." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/profile.jpg" />
+
+  <title>Ankan Saha — Portfolio</title>
+
+  <!-- Favicon (uses an SVG with the user's initials in the accent color) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0e1a'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='700' text-anchor='middle' fill='%23d4a056'%3EAS%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts: Fraunces (display serif) + Outfit (body sans) + JetBrains Mono (mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ========== PAGE LOADER ========== -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <span class="loader-letter">A</span><span class="loader-letter">S</span>
+      <div class="loader-bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- ========== CURSOR DOT (desktop only) ========== -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- ========== ATMOSPHERIC BACKGROUND (gradient mesh + grain) ========== -->
+  <div class="bg-atmosphere" aria-hidden="true">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="nav-logo-mark">AS</span>
+        <span class="nav-logo-text">Ankan Saha</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#competitive">Coding</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="hero-grid">
+
+        <div class="hero-text">
+          <p class="hero-greeting reveal">
+            <span class="hero-line"></span>
+            <span id="heroWelcome">Welcome — I'm glad you're here.</span>
+          </p>
+
+          <h1 class="hero-name reveal" id="heroName">Ankan Saha</h1>
+
+          <p class="hero-title reveal">
+            <span id="heroTitle">Lecturer · Researcher · Engineer</span>
+          </p>
+
+          <p class="hero-intro reveal" id="heroIntro"></p>
+
+          <div class="hero-actions reveal">
+            <a href="#projects" class="btn btn-primary">
+              View My Work
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="assets/CV.pdf" class="btn btn-ghost" target="_blank" rel="noopener" id="cvBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download CV
+            </a>
+          </div>
+
+          <div class="hero-socials reveal" id="heroSocials"></div>
+        </div>
+
+        <div class="hero-photo-wrap reveal">
+          <div class="hero-photo-frame">
+            <div class="hero-photo-bg"></div>
+            <div class="hero-photo">
+              <img id="heroPhoto" src="assets/profile.jpg" alt="Portrait of Ankan Saha" loading="eager" />
+            </div>
+            <div class="hero-photo-orbit">
+              <span class="orbit-dot orbit-dot-1"></span>
+              <span class="orbit-dot orbit-dot-2"></span>
+              <span class="orbit-dot orbit-dot-3"></span>
+            </div>
+            <div class="hero-photo-tag">
+              <span class="tag-dot"></span>
+              <span>Available for collaboration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero stats band -->
+      <div class="hero-stats reveal" id="heroStats"></div>
+
+      <a href="#about" class="hero-scroll" aria-label="Scroll to next section">
+        <span></span>
+      </a>
+    </section>
+
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section" id="about">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About</h2>
+        <span class="section-rule"></span>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text" id="aboutText"></div>
+        <aside class="about-card">
+          <h3>Quick Facts</h3>
+          <ul class="about-facts" id="aboutFacts"></ul>
+        </aside>
+      </div>
+    </section>
+
+
+    <!-- ========== EDUCATION ========== -->
+    <section class="section" id="education">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Education</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="timeline" id="educationTimeline"></div>
+    </section>
+
+
+    <!-- ========== EXPERIENCE ========== -->
+    <section class="section" id="experience">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Experience</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="timeline" id="experienceTimeline"></div>
+    </section>
+
+
+    <!-- ========== PUBLICATIONS ========== -->
+    <section class="section" id="publications">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Publications</h2>
+        <span class="section-rule"></span>
+        <a class="section-link" id="scholarLink" target="_blank" rel="noopener">
+          Google Scholar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+      <div class="pubs" id="publicationsList"></div>
+    </section>
+
+
+    <!-- ========== THESIS ========== -->
+    <section class="section" id="thesis">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Thesis Work</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="thesis-grid" id="thesisList"></div>
+    </section>
+
+
+    <!-- ========== PROJECTS ========== -->
+    <section class="section" id="projects">
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Projects</h2>
+        <span class="section-rule"></span>
+      </div>
+
+      <div class="filter-chips" id="projectFilters"></div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </section>
+
+
+    <!-- ========== CERTIFICATIONS ========== -->
+    <section class="section" id="certifications">
+      <div class="section-head">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Certifications</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="certs-grid" id="certsGrid"></div>
+    </section>
+
+
+    <!-- ========== ACHIEVEMENTS ========== -->
+    <section class="section" id="achievements">
+      <div class="section-head">
+        <span class="section-num">08</span>
+        <h2 class="section-title">Achievements</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="achievements-grid" id="achievementsGrid"></div>
+    </section>
+
+
+    <!-- ========== SKILLS ========== -->
+    <section class="section" id="skills">
+      <div class="section-head">
+        <span class="section-num">09</span>
+        <h2 class="section-title">Skills</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </section>
+
+
+    <!-- ========== COMPETITIVE PROGRAMMING ========== -->
+    <section class="section" id="competitive">
+      <div class="section-head">
+        <span class="section-num">10</span>
+        <h2 class="section-title">Competitive Programming</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="cp-grid" id="cpGrid"></div>
+    </section>
+
+
+    <!-- ========== REFERENCES ========== -->
+    <section class="section" id="references">
+      <div class="section-head">
+        <span class="section-num">11</span>
+        <h2 class="section-title">References</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="refs-grid" id="refsGrid"></div>
+    </section>
+
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section section-contact" id="contact">
+      <div class="contact-card">
+        <div class="contact-head">
+          <p class="section-num">12</p>
+          <h2 class="contact-title">Let's get in touch.</h2>
+          <p class="contact-sub">Open to research collaborations, academic discussions, and student mentorship.</p>
+        </div>
+
+        <div class="contact-grid" id="contactGrid"></div>
+
+        <div class="contact-cta">
+          <a id="contactEmailBtn" class="btn btn-primary" href="mailto:ankansaha314159@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            Send an Email
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© <span id="footerYear"></span> <span id="footerName">Ankan Saha</span>. Crafted with care.</p>
+      <div class="footer-socials" id="footerSocials"></div>
+    </div>
+  </footer>
+
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

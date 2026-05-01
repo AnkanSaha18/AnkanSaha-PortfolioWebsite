@@ -1,0 +1,208 @@
+/* ===================================================================
+   RESPONSIVE — tablet, mobile, and large-desktop adaptations
+   Breakpoints:
+     - 1100px and below : tablet landscape / small desktop
+     - 880px  and below : tablet portrait
+     - 640px  and below : large mobile
+     - 420px  and below : small mobile
+     - 1600px and above : large desktop
+=================================================================== */
+
+
+/* -------------------------------------------------------------------
+   1100px — small desktop / tablet landscape
+------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+
+  .nav-menu {
+    /* Show fewer items inline on narrower screens — overflow goes to the burger menu */
+    gap: 0.2rem;
+  }
+  .nav-menu a { padding: 0.5rem 0.7rem; font-size: 0.85rem; }
+  .nav-menu a:nth-child(n+6) { display: none; }
+
+  .hero-grid { gap: 2.5rem; }
+  .hero-photo-frame { width: clamp(240px, 40vw, 360px); }
+
+  .about-grid { grid-template-columns: 1fr; }
+
+  .thesis-grid { grid-template-columns: 1fr; }
+}
+
+
+/* -------------------------------------------------------------------
+   880px — tablet portrait — switch to mobile nav, single-column hero
+------------------------------------------------------------------- */
+
+@media (max-width: 880px) {
+
+  /* Mobile navigation */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(80vw, 320px);
+    height: 100vh;
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border-strong);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6rem 2rem 2rem;
+    gap: 0.5rem;
+    transform: translateX(100%);
+    transition: transform 0.45s var(--ease-out);
+    z-index: 999;
+  }
+  .nav-menu.open { transform: translateX(0); }
+  .nav-menu a {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.85rem 1rem;
+    display: block;
+  }
+  .nav-menu a:nth-child(n) { display: block; }
+  .nav-burger { display: inline-flex; align-items: center; justify-content: center; }
+
+  /* Hero — stack photo above text? No — text first feels more inviting.
+     We keep text first but full width, then the photo below. */
+  .hero { padding-top: 7rem; }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .hero-text { order: 1; }
+  .hero-photo-wrap { order: 2; }
+  .hero-name { font-size: clamp(2.5rem, 11vw, 4rem); }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+
+  /* Publications: collapse 3-col to 2-col + below */
+  .pub {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+  .pub-year {
+    grid-column: 1 / -1;
+    font-size: 1.5rem;
+  }
+
+  /* Section spacing trim */
+  .section-head { gap: 1rem; margin-bottom: 2.5rem; }
+}
+
+
+/* -------------------------------------------------------------------
+   640px — large mobile
+------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+
+  :root { --section-pad: 4rem; }
+
+  /* Hide custom cursor on touch (already handled in CSS, but reinforce) */
+  .cursor-dot, .cursor-ring { display: none !important; }
+
+  .nav-logo-text { display: none; }
+
+  .hero { padding-top: 6rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 2.5rem;
+  }
+  .hero-stat { padding: 1.25rem 0.75rem; }
+  .hero-photo-frame { width: 80%; max-width: 320px; }
+
+  .about-text p:first-child::first-letter {
+    font-size: 3.5rem;
+    margin: 0.3rem 0.5rem 0 0;
+  }
+
+  .timeline { padding-left: 1.75rem; }
+  .tl-item::before { left: -1.75rem; width: 16px; height: 16px; }
+  .timeline::before { left: 7px; }
+
+  .pub {
+    padding: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  .pub-link {
+    justify-self: end;
+    margin-top: -42px; /* place link in same row visually */
+  }
+  .pub-year {
+    font-size: 1.3rem;
+    margin-bottom: -0.5rem;
+  }
+
+  .filter-chips { gap: 0.4rem; }
+  .filter-chip { padding: 0.4rem 0.85rem; font-size: 0.8rem; }
+
+  .projects-grid,
+  .certs-grid,
+  .achievements-grid,
+  .skills-grid,
+  .refs-grid,
+  .cp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card { padding: 2.5rem 1.5rem; }
+  .contact-grid { grid-template-columns: 1fr; }
+
+  .footer-inner { flex-direction: column; text-align: center; gap: 1rem; }
+}
+
+
+/* -------------------------------------------------------------------
+   420px — small mobile
+------------------------------------------------------------------- */
+
+@media (max-width: 420px) {
+
+  .nav { padding: 1rem; }
+  .nav.scrolled { padding: 0.6rem 1rem; }
+  .nav-logo-mark { width: 32px; height: 32px; font-size: 0.8rem; }
+
+  .section { padding: 4rem 1.25rem; }
+
+  .hero-stats { grid-template-columns: 1fr; }
+  .hero-stat { padding: 1rem; }
+
+  .section-head { flex-wrap: wrap; }
+  .section-rule { display: none; }
+
+  .about-card { padding: 1.5rem; }
+  .project, .skill-group, .cp-card, .ref-card, .achievement, .cert {
+    padding: 1.25rem;
+  }
+}
+
+
+/* -------------------------------------------------------------------
+   1600px+ — large desktop, give the hero a bit more breathing room
+------------------------------------------------------------------- */
+
+@media (min-width: 1600px) {
+
+  :root { --max-width: 1320px; }
+
+  .hero-name { font-size: 6rem; }
+}
+
+
+/* -------------------------------------------------------------------
+   Print — clean printable version of the page
+------------------------------------------------------------------- */
+
+@media print {
+  .nav, .footer, .hero-scroll, .bg-atmosphere, .loader,
+  .cursor-dot, .cursor-ring, .nav-burger, .theme-toggle,
+  .filter-chips, .hero-photo-orbit, .hero-photo-tag {
+    display: none !important;
+  }
+  body { background: white; color: black; }
+  .section { padding: 1.5rem 0; }
+  a { color: black; text-decoration: underline; }
+}
